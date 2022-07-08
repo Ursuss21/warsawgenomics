@@ -1,4 +1,6 @@
 <nav>
   <input type="text" />
-  <button type="button">{{ loading ? "Proszę czekać..." : "Pobierz" }}</button>
+  <button (click)="getLabsData()" type="button">
+    {{ loading ? "Proszę czekać..." : "Pobierz" }}
+  </button>
 </nav>

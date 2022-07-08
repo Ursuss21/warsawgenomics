@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LabsService } from '../services/labs.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -8,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
 export class SearchBarComponent implements OnInit {
   loading: boolean = false;
 
-  constructor() {}
+  constructor(private labsService: LabsService) {}
 
   ngOnInit(): void {}
+
+  getLabsData(): void {
+    this.labsService.getLabsAndCoordsData().subscribe((data) => {
+      console.log(data);
+    });
+  }
 }

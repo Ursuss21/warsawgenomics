@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  selectLanguage(lang: string) {
+  selectLanguage(lang: string): void {
     this.selectedLanguage = lang;
   }
 }
