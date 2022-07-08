@@ -1,0 +1,13 @@
+header {
+  align-items: center;
+  background-color: #0088cc;
+  display: flex;
+  gap: 0.5rem;
+  height: 50px;
+  justify-content: flex-end;
+  width: 100%;
+
+  input:last-child {
+    margin-right: 2rem;
+  }
+}
