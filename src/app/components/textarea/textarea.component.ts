@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LabsData } from '../models/labs-data.model';
+import { LabsData } from '../../models/labs-data.model';
 
 @Component({
   selector: 'app-textarea',

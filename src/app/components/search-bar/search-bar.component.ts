@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { LabsData } from '../models/labs-data.model';
-import { LabsService } from '../services/labs.service';
+import { LabsData } from '../../models/labs-data.model';
+import { LabsService } from '../../services/labs.service';
 
 @Component({
   selector: 'app-search-bar',
