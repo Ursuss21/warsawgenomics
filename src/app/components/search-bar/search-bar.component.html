@@ -7,6 +7,6 @@
     [ngClass]="{ disabled: loading }"
     type="button"
   >
-    {{ loading ? "Proszę czekać..." : "Pobierz" }}
+    {{ (loading ? "searchBar.wait" : "searchBar.download") | translate }}
   </button>
 </nav>
