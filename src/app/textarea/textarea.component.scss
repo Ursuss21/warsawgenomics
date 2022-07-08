@@ -1,0 +1,8 @@
+.textarea {
+  display: flex;
+  height: 100%;
+
+  textarea {
+    flex-grow: 1;
+  }
+}

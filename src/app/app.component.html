@@ -1,6 +1,9 @@
 <app-header></app-header>
 <app-search-bar (labsDataChange)="getLabsData($event)"></app-search-bar>
 <main>
-  <app-map></app-map>
-  <app-textarea></app-textarea>
+  <app-map class="map-container"></app-map>
+  <app-textarea
+    class="textarea-container"
+    [labsDataObservable]="labsData.asObservable()"
+  ></app-textarea>
 </main>

@@ -1,4 +1,4 @@
-nav {
+.navbar {
   align-items: center;
   background-color: #0088cc;
   display: flex;
@@ -7,12 +7,13 @@ nav {
   justify-content: center;
   width: 100%;
 
-  input {
+  .url-input {
     font-size: 1rem;
     height: 1.5rem;
+    width: 500px;
   }
 
-  button {
+  .download-button {
     background-color: #22c55e;
     border: none;
     border-radius: 2rem;

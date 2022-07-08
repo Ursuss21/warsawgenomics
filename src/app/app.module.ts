@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { HttpClientModule } from '@angular/common/http';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { MapComponent } from './map/map.component';
 import { TextareaComponent } from './textarea/textarea.component';
@@ -16,7 +17,7 @@ import { TextareaComponent } from './textarea/textarea.component';
     MapComponent,
     TextareaComponent,
   ],
-  imports: [BrowserModule, HttpClientModule],
+  imports: [BrowserModule, FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })

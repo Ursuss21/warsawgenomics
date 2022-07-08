@@ -7,11 +7,9 @@ import { LabsData } from '../models/labs-data.model';
   providedIn: 'root',
 })
 export class LabsService {
-  private baseUrl: string = 'https://dev2.badamygeny.pl/api/laboratoria/inne';
-
   constructor(private http: HttpClient) {}
 
-  getLabsAndCoordsData(): Observable<LabsData> {
-    return this.http.get<LabsData>(this.baseUrl);
+  getLabsAndCoordsData(url: string): Observable<LabsData> {
+    return this.http.get<LabsData>(url);
   }
 }

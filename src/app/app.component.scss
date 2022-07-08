@@ -1,4 +1,14 @@
 main {
+  align-items: stretch;
   display: flex;
   width: 100%;
+  height: calc(100vh - 100px);
+
+  .map-container {
+    flex-grow: 2;
+  }
+
+  .textarea-container {
+    flex-grow: 1;
+  }
 }

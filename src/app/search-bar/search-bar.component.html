@@ -1,6 +1,7 @@
-<nav>
-  <input type="text" />
+<nav class="navbar">
+  <input class="url-input" [(ngModel)]="url" type="text" />
   <button
+    class="download-button"
     (click)="getLabsData()"
     [disabled]="loading"
     [ngClass]="{ disabled: loading }"

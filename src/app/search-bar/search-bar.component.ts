@@ -11,6 +11,7 @@ export class SearchBarComponent implements OnInit {
   @Output() labsDataChange = new EventEmitter<LabsData>();
 
   loading: boolean = false;
+  url: string = 'https://dev2.badamygeny.pl/api/laboratoria/inne';
 
   constructor(private labsService: LabsService) {}
 
@@ -18,7 +19,7 @@ export class SearchBarComponent implements OnInit {
 
   getLabsData(): void {
     this.loading = true;
-    this.labsService.getLabsAndCoordsData().subscribe({
+    this.labsService.getLabsAndCoordsData(this.url).subscribe({
       next: (data: LabsData) => {
         this.labsDataChange.emit(data);
         this.loading = false;

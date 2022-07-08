@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Subject } from 'rxjs';
 import { LabsData } from './models/labs-data.model';
 
 @Component({
@@ -7,12 +8,12 @@ import { LabsData } from './models/labs-data.model';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  labsData: LabsData;
+  labsData = new Subject<LabsData>;
 
   title = 'warsawgenomics';
 
   getLabsData(data: LabsData): void {
-    this.labsData = data;
+    this.labsData.next(data);
     console.log(this.labsData);
   }
 }
