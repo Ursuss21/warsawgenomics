@@ -15,6 +15,10 @@ export class TextareaComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    this.handleLabsData();
+  }
+
+  handleLabsData(): void {
     this.labsDataObservable.subscribe({
       next: (data: LabsData) => {
         this.labsData = JSON.stringify(data);

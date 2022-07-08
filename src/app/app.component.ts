@@ -14,6 +14,5 @@ export class AppComponent {
 
   getLabsData(data: LabsData): void {
     this.labsData.next(data);
-    console.log(this.labsData);
   }
 }
