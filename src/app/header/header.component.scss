@@ -1,13 +1,21 @@
 header {
   align-items: center;
-  background-color: #0088cc;
+  background-color: #004696;
   display: flex;
   gap: 0.5rem;
   height: 50px;
   justify-content: flex-end;
   width: 100%;
 
-  input:last-child {
-    margin-right: 2rem;
+  input {
+    transition: 0.3s;
+
+    &:hover {
+      filter: brightness(70%);
+    }
+
+    &:last-child {
+      margin-right: 2rem;
+    }
   }
 }
