@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { LabsData } from '../../models/labs-data.model';
 import { LabsService } from '../../services/labs.service';
 
@@ -10,7 +10,7 @@ import { LabsService } from '../../services/labs.service';
 export class SearchBarComponent implements OnInit {
   @Output() labsDataChange = new EventEmitter<LabsData>();
 
-  loading: boolean = true;
+  loading: boolean = false;
   url: string = 'https://dev2.badamygeny.pl/api/laboratoria/inne';
 
   constructor(private labsService: LabsService) {}

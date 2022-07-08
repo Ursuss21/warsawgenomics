@@ -11,6 +11,7 @@ import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
 import { Geometry, Point } from 'ol/geom';
 import { Icon, Style } from 'ol/style';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-map',
@@ -21,6 +22,7 @@ export class MapComponent implements OnInit {
   @Input() labsDataObservable: Observable<LabsData>;
 
   coords: number[] = [0, 0];
+  infoLocale: string;
   labsData: LabsData;
   map: Map;
   markerLayer: VectorLayer<VectorSource<Geometry>>;
@@ -28,11 +30,19 @@ export class MapComponent implements OnInit {
   select: Select;
   zoom: number = 0;
 
-  constructor() {}
+  constructor(public translate: TranslateService) {}
 
   ngOnInit(): void {
     this.initMap();
     this.handleLabsData();
+    this.updateInfoLocale();
+  }
+
+  updateInfoLocale(): void {
+    this.translate.stream('map.info').subscribe((value) => {
+      this.infoLocale = value;
+      this.popup.hide();
+    });
   }
 
   handleLabsData(): void {
@@ -105,7 +115,7 @@ export class MapComponent implements OnInit {
             <div>${lab.adres}</div>
             <div>${lab.kod_pocztowy}, ${lab.miejscowosc}</div>
           `,
-          info: lab.info ? `<div>Informacje: ${lab.info}</div>` : lab.info,
+          info: lab.info,
         });
         vectorSource.addFeature(point);
       });
@@ -199,7 +209,11 @@ export class MapComponent implements OnInit {
     const content = `
       <h4>${featureProperties.name}</h4>
       <div>${featureProperties.address}</div>
-      <div>${featureProperties.info ? featureProperties.info : ''}</div>
+      <div>${
+        featureProperties.info
+          ? `<div>${this.infoLocale} ${featureProperties.info}</div>`
+          : ''
+      }</div>
     `;
     this.popup.show(feature.getGeometry().getCoordinates(), content);
   }

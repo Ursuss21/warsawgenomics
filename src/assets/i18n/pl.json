@@ -2,5 +2,8 @@
   "searchBar": {
     "wait": "Proszę czekać...",
     "download": "Pobierz"
+  },
+  "map": {
+    "info": "Informacje:"
   }
 }
