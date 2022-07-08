@@ -24,7 +24,11 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.scss", "node_modules/ol/ol.css"],
+            "styles": [
+              "src/styles.scss",
+              "node_modules/ol/ol.css",
+              "node_modules/ol-ext/dist/ol-ext.css"
+            ],
             "scripts": []
           },
           "configurations": {

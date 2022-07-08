@@ -56,16 +56,19 @@ export class MapComponent implements OnInit {
     this.popup = this.getPopup();
 
     this.map = new Map({
+      layers: [mapLayer, this.markerLayer],
+      overlays: [this.popup],
+      target: 'ol-map',
       view: new View({
         center: this.coords,
         zoom: this.zoom,
       }),
-      layers: [mapLayer, this.markerLayer],
-      target: 'ol-map',
     });
 
     this.select = this.getMapSelectIcon();
     this.map.addInteraction(this.select);
+
+    this.handleMarkerEvents();
   }
 
   getTileLayer(): TileLayer<OSM> {
@@ -94,9 +97,14 @@ export class MapComponent implements OnInit {
         const point = new Feature({
           geometry: new Point(fromLonLat([lab.gps_lng, lab.gps_lat])),
         });
-        point.setProperties({ name: lab.nazwa });
-        point.setProperties({ address: lab.adres });
-        point.setProperties({ info: lab.info });
+        point.setProperties({
+          name: lab.nazwa,
+          address: `
+            <div>${lab.adres}</div>
+            <div>${lab.kod_pocztowy}, ${lab.miejscowosc}</div>
+          `,
+          info: lab.info ? `<div>Informacje: ${lab.info}</div>` : lab.info,
+        });
         vectorSource.addFeature(point);
       });
     }
@@ -124,6 +132,17 @@ export class MapComponent implements OnInit {
     });
   }
 
+  getPointStyleIcon(): Style {
+    return new Style({
+      image: new Icon({
+        color: '#004696',
+        crossOrigin: 'anonymous',
+        src: 'assets/icons/circle.svg',
+        scale: [0.15, 0.15],
+      }),
+    });
+  }
+
   getPopup(): Popup {
     return new Popup({
       popupClass: 'default anim',
@@ -139,14 +158,36 @@ export class MapComponent implements OnInit {
     });
   }
 
-  getPointStyleIcon(): Style {
-    return new Style({
-      image: new Icon({
-        color: '#004696',
-        crossOrigin: 'anonymous',
-        src: 'assets/icons/circle.svg',
-        scale: [0.1, 0.1],
-      }),
+  handleMarkerEvents(): void {
+    this.onMarkerSelect();
+    this.onMarkerDeselect();
+  }
+
+  onMarkerSelect(): void {
+    this.select.getFeatures().on('add', (e) => {
+      e.preventDefault();
+      const feature = e.element;
+      const featureProperties = this.getFeatureProperties(feature);
+      this.preparePopupData(feature, featureProperties);
+    });
+  }
+
+  getFeatureProperties(feature: Feature): any {
+    return feature.getProperties();
+  }
+
+  preparePopupData(feature: any, featureProperties: any): void {
+    const content = `
+      <h4>${featureProperties.name}</h4>
+      <div>${featureProperties.address}</div>
+      <div>${featureProperties.info ? featureProperties.info : ''}</div>
+    `;
+    this.popup.show(feature.getGeometry().getCoordinates(), content);
+  }
+
+  onMarkerDeselect(): void {
+    this.select.getFeatures().on('remove', (e) => {
+      this.popup.hide();
     });
   }
 }

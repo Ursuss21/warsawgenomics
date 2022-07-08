@@ -1,3 +1,25 @@
 #ol-map {
   flex-grow: 1;
 }
+
+:host ::ng-deep {
+  .ol-popup {
+    max-width: 300px;
+    min-width: 100px;
+    min-height: 1em;
+
+    div {
+      background-color: #004696;
+      border: 1px #004696 solid;
+      color: white;
+    }
+
+    .ol-popup-content h4 {
+      margin: 0.5rem 0;
+    }
+
+    .anchor {
+      display: none;
+    }
+  }
+}
