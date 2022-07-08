@@ -1,6 +1,11 @@
 <nav>
   <input type="text" />
-  <button (click)="getLabsData()" type="button">
+  <button
+    (click)="getLabsData()"
+    [disabled]="loading"
+    [ngClass]="{ disabled: loading }"
+    type="button"
+  >
     {{ loading ? "Proszę czekać..." : "Pobierz" }}
   </button>
 </nav>

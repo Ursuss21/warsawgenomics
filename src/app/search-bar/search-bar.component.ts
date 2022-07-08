@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { LabsData } from '../models/labs-data.model';
 import { LabsService } from '../services/labs.service';
 
 @Component({
@@ -7,6 +8,8 @@ import { LabsService } from '../services/labs.service';
   styleUrls: ['./search-bar.component.scss'],
 })
 export class SearchBarComponent implements OnInit {
+  @Output() labsDataChange = new EventEmitter<LabsData>();
+
   loading: boolean = false;
 
   constructor(private labsService: LabsService) {}
@@ -14,8 +17,16 @@ export class SearchBarComponent implements OnInit {
   ngOnInit(): void {}
 
   getLabsData(): void {
-    this.labsService.getLabsAndCoordsData().subscribe((data) => {
-      console.log(data);
+    this.loading = true;
+    this.labsService.getLabsAndCoordsData().subscribe({
+      next: (data: LabsData) => {
+        this.labsDataChange.emit(data);
+        this.loading = false;
+      },
+      error: (error: any) => {
+        this.loading = false;
+        console.error(error);
+      },
     });
   }
 }

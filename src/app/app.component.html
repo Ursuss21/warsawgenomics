@@ -1,2 +1,6 @@
 <app-header></app-header>
-<app-search-bar></app-search-bar>
+<app-search-bar (labsDataChange)="getLabsData($event)"></app-search-bar>
+<main>
+  <app-map></app-map>
+  <app-textarea></app-textarea>
+</main>
