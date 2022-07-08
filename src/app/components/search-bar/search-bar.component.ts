@@ -10,7 +10,7 @@ import { LabsService } from '../../services/labs.service';
 export class SearchBarComponent implements OnInit {
   @Output() labsDataChange = new EventEmitter<LabsData>();
 
-  loading: boolean = false;
+  loading: boolean = true;
   url: string = 'https://dev2.badamygeny.pl/api/laboratoria/inne';
 
   constructor(private labsService: LabsService) {}

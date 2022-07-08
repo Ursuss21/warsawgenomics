@@ -9,4 +9,5 @@
   >
     {{ (loading ? "searchBar.wait" : "searchBar.download") | translate }}
   </button>
+  <div *ngIf="loading" class="spinner"></div>
 </nav>

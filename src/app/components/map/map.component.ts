@@ -41,6 +41,7 @@ export class MapComponent implements OnInit {
         this.labsData = data;
         this.setMapCenter();
         this.setMapZoom();
+        this.popup.hide();
         this.refreshMap();
         this.markerLayer.setSource(this.getVectorSource());
       },
@@ -68,6 +69,7 @@ export class MapComponent implements OnInit {
     this.select = this.getMapSelectIcon();
     this.map.addInteraction(this.select);
 
+    this.handleMapEvents();
     this.handleMarkerEvents();
   }
 
@@ -155,6 +157,23 @@ export class MapComponent implements OnInit {
   getMapSelectIcon(): Select {
     return new Select({
       style: this.getPointStyleIcon(),
+    });
+  }
+
+  handleMapEvents(): void {
+    this.mapOnPointerMove();
+  }
+
+  mapOnPointerMove(): void {
+    this.map.on('pointermove', (e) => {
+      const hit = this.map.forEachFeatureAtPixel(e.pixel, (feature, layer) => {
+        return true;
+      });
+      if (hit) {
+        this.map.getTargetElement().style.cursor = 'pointer';
+      } else {
+        this.map.getTargetElement().style.cursor = '';
+      }
     });
   }
 

@@ -21,7 +21,7 @@ export class TextareaComponent implements OnInit {
   handleLabsData(): void {
     this.labsDataObservable.subscribe({
       next: (data: LabsData) => {
-        this.labsData = JSON.stringify(data);
+        this.labsData = JSON.stringify(data, undefined, 4);
       },
       error: (error: any) => {
         console.error(error);
