@@ -1,5 +1,5 @@
 <nav class="navbar">
-  <input class="url-input" [(ngModel)]="url" type="text" />
+  <input class="url-input" [disabled]="loading" [(ngModel)]="url" type="text" />
   <button
     class="download-button"
     (click)="getLabsData()"
